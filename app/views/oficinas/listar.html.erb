@@ -1,7 +1,19 @@
 <h1>Oficinas registradas</h1>
 <% @lista_oficinas.each do |oficina| %>
     <p> <%= oficina.codigo %> </p>
-    <p> <%= oficina.precio %> </p>
-    <p> <%= oficina.esta_alquilada %> </p>
+    <p> <%= oficina.precio %> </p>   
+
+    <% if oficina.inquilinos.empty? %>
+        <p> NO HAY INQUILINOS </p>
+    <% else %>
+        <ul>
+            <% oficina.inquilinos.each do |inquilino| %>
+                <li>  
+                    <%= inquilino.nombre + " " + inquilino.apellido %>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
+
     <hr>
 <% end %>
