@@ -1,0 +1,11 @@
+es:
+  activerecord:
+    errors:
+      models:
+        oficina:
+          attributes:
+            codigo:
+              blank: "no puede estar vacío"
+              taken: "ya existe"
+            precio:
+              blank: "no puede estar en cero"
