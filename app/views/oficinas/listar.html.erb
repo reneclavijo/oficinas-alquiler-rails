@@ -3,9 +3,7 @@
     <p> <%= oficina.codigo %> </p>
     <p> <%= oficina.precio %> </p>   
 
-    <% if oficina.inquilinos.empty? %>
-        <p> DISPONIBLE </p>
-    <% else %>
+    <% if oficina.esta_alquilada %>
         <span>Alquilado por: </span>
         <ul>
             <% oficina.inquilinos.each do |inquilino| %>
@@ -14,6 +12,8 @@
                 </li>
             <% end %>
         </ul>
+    <% else %>
+        <p> DISPONIBLE </p>
     <% end %>
 
     <hr>

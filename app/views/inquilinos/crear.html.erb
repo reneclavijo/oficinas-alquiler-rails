@@ -1,0 +1,42 @@
+<h1>Crear un inquilino</h1>
+
+<%= form_with(model: @inquilino, url: '/inquilinos/crear') do |formulario| %>
+
+    <%= formulario.label :nombre %>
+    <%= formulario.text_field :nombre %>
+    <% if @inquilino.errors[:nombre].any? %>
+        <p style="color:red">
+            <%= @inquilino.errors[:nombre].first %>
+        </p>
+    <% end %>
+
+    <br>
+    <%= formulario.label :apellido %>
+    <%= formulario.text_field :apellido %>
+    <% if @inquilino.errors[:apellido].any? %>
+        <%= @inquilino.errors[:apellido].first %>
+    <% end %>
+    <br>
+
+    <%= formulario.label :telefono %>
+    <%= formulario.text_field :telefono %>
+    <% if @inquilino.errors[:telefono].any? %>
+        <%= @inquilino.errors[:telefono].first %>
+    <% end %>
+    <br>
+
+    <%= formulario.label :rut %>
+    <%= formulario.text_field :rut %>
+    <% if @inquilino.errors[:rut].any? %>
+        <%= @inquilino.errors[:rut].first %>
+    <% end %>
+    <br>
+
+    <%= formulario.label :oficina_id %>
+    <%= formulario.select :oficina_id, 
+        options_from_collection_for_select(@oficinas, :id, :codigo) 
+        %>
+    <br>
+
+    <%= formulario.submit 'Registrar inquilino' %>
+<% end %>
