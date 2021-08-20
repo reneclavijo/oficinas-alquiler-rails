@@ -1,0 +1,23 @@
+<!-- -->
+
+<div class="card" style="width: 18rem; margin-top: 1em;">
+    <div class="card-body">
+        <h5 class="card-title">Oficina <%= oficina.codigo %></h5>
+        <p class="card-text">Precio:  <%= oficina.precio %> </p>
+        <% if oficina.esta_alquilada %>
+            <span>Alquilado por: </span>
+            <ul>
+                <% oficina.inquilinos.each do |inquilino| %>
+                    <li>  
+                        <%= inquilino.nombre + " " + inquilino.apellido %>
+                    </li>
+                <% end %>
+            </ul>
+        <% else %>
+            <p> DISPONIBLE </p>
+        <% end %>
+
+        <a href="#" class="btn btn-primary">Editar</a>
+        <a href="#" class="btn btn-warning">Borrar Inquilinos</a>
+    </div>
+</div>

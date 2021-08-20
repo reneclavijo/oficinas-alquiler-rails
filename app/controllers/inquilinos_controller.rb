@@ -1,8 +1,28 @@
 class InquilinosController < ApplicationController
     
+    # GET
+    def listar
+
+    end
+
     # GET - Devolver el formulario para crear un inquilino
     def crear
         @inquilino = Inquilino.new
+        @oficinas = Oficina.select(:id, :codigo).order(codigo: :asc)
+    end
+
+    # GET
+    def mostrar
+        id_inquilino = params[:id]
+
+        @inquilino = Inquilino.find(id_inquilino)
+
+    end
+
+    # GET
+    def editar
+        id_inquilino = params[:id]
+        @inquilino = Inquilino.find(id_inquilino)
         @oficinas = Oficina.select(:id, :codigo).order(codigo: :asc)
     end
 
@@ -23,4 +43,20 @@ class InquilinosController < ApplicationController
             render :crear
         end
     end
+
+    # PUT/PATCH
+    def actualizar
+        @inquilino = Inquilino.find(params[:id])
+        valores = params.require(:inquilino).permit(:nombre, :apellido, :telefono, :rut, :oficina_id)
+        if @inquilino.update(valores)
+            
+        end
+
+    end
+
+    # DELETE
+    def eliminar
+
+    end
+
 end
