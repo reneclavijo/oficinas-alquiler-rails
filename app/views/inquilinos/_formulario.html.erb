@@ -1,4 +1,4 @@
-<%= form_with(model: inquilino, url: '/inquilinos/crear') do |formulario| %>
+<%= form_with(model: inquilino) do |formulario| %>
 
     <div class="mb-3">
         <%= formulario.label :nombre, class: 'form-label' %>
@@ -41,12 +41,21 @@
     </div>
     
     <div class="mb-3">
-    <%= formulario.label :oficina_id, class: 'form-label' %>
-    <%= formulario.select :oficina_id, 
-        options_from_collection_for_select(oficinas, :id, :codigo, inquilino.oficina.id),
-        {},
-        {class: 'form-select'}        
-        %>
+        <%= formulario.label :oficina_id, class: 'form-label' %>
+
+        <% if inquilino.oficina %> <!-- Evalua si existe una oficina para el inqulino -->
+            <%= formulario.select :oficina_id, 
+            options_from_collection_for_select(oficinas, :id, :codigo, inquilino.oficina.id),
+            {},
+            {class: 'form-select'}        
+            %>
+        <% else %>
+            <%= formulario.select :oficina_id, 
+            options_from_collection_for_select(oficinas, :id, :codigo),
+            {},
+            {class: 'form-select'}        
+            %>
+        <% end %>
     </div>
 
     <%= formulario.submit 'Registrar inquilino', class: 'btn btn-primary' %>
