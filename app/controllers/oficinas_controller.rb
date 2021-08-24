@@ -1,8 +1,10 @@
 class OficinasController < ApplicationController
+
+  before_action :validar_sesion
+
   # GET
   def listar
-    @lista_oficinas = Oficina.all.order(id: :asc)
-
+    @lista_oficinas = Oficina.includes(:inquilinos).order(id: :asc)
   end
 
   # GET
@@ -23,5 +25,4 @@ class OficinasController < ApplicationController
       render :crear      
     end
   end
-
 end

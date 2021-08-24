@@ -1,11 +1,12 @@
 class InquilinosController < ApplicationController
     
+    before_action :validar_sesion
     before_action :buscar_inquilino, only: [:mostrar, :editar, :actualizar, :eliminar]
     # before_action :buscar_inquilino, except: [:listar, :crear]
 
     # GET
     def listar
-        @inquilinos = Inquilino.all.order(id: :asc)
+        @inquilinos = Inquilino.includes(:oficina).order(id: :asc)
     end
 
     # GET - Devolver el formulario para crear un inquilino
